@@ -1,5 +1,5 @@
 name:                light
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            a simple physics engine
 description:         A simple physics engine(dynamics only) with collision dection
 homepage:            https://github.com/suzumiyasmith/light#readme
@@ -15,6 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
+  ghc-options:         -Wall
   exposed-modules:     Physics.Light
   build-depends:       base >= 4.7 && < 5
                      , linear >= 1.20 && < 2

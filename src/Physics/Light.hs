@@ -4,7 +4,6 @@ module Physics.Light where
 
 import GJK
 
-import Control.Arrow
 import Control.Lens
 import Control.Monad.Writer.Lazy
 import Data.Fixed
@@ -37,8 +36,8 @@ addObjects :: [Object2D] -> PhysicsWorld -> PhysicsWorld
 addObjects (o:os) w = addObjects os $ addObject o w
 addObjects [] w = w
 
-update :: Double -> PhysicsWorld -> PhysicsWorld
-update dt = first (fmap w)
+update :: Double -> IM.IntMap Object2D -> IM.IntMap Object2D
+update dt = fmap w
   where
     w :: Object2D -> Object2D
     w o = o
@@ -46,8 +45,8 @@ update dt = first (fmap w)
       & velocity %~ (+ o ^. acceleration ^* dt)
       & position .  _z %~ (`mod'` (2 * pi))
 
-detectCollision :: PhysicsWorld -> [(Int, Int)]
-detectCollision (w, _) =
+detectCollision :: IM.IntMap Object2D -> [(Int, Int)]
+detectCollision w =
   execWriter $ IM.traverseWithKey (\k o -> tell $ fmap ((,) k) (detect w k o)) w
 
 detect :: IM.IntMap Object2D -> Int -> Object2D -> [Int]
