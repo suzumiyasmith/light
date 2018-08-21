@@ -7,7 +7,7 @@ license:             BSD3
 license-file:        LICENSE
 author:              Suzumiya
 maintainer:          suzumiyasmith@gmail.com
-copyright:           Copyright: (c) 2017 Suzumiya
+copyright:           Copyright: (c) 2017-2018 Suzumiya
 category:            Physics
 build-type:          Simple
 extra-source-files:  README.md
